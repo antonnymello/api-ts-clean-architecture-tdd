@@ -1,5 +1,7 @@
-const teste = () => {
-  let abc = 'abc';
+const teste = (): string => {
+  const abc = 'abc';
 
   return abc;
 };
+
+teste();
