@@ -1,6 +1,8 @@
 class SignUpController {
   handle(httpRequest: any): any {
-    return {};
+    return {
+      statusCode: 400,
+    };
   }
 }
 
