@@ -1,12 +1,14 @@
 {
   "extends": ["standard-with-typescript"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json"]
   },
   "rules": {
     "@typescript-eslint/semi": "off",
     "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/comma-dangle": "off",
+    "@typescript-eslint/space-before-function-paren": "off"
   }
 }
