@@ -32,7 +32,7 @@ class SignUpController implements Controller {
     }
   }
 
-  handle(httpRequest: HttpRequest): HttpResponse {
+  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       const hasInvalidFields = this.validateReceivedFields(httpRequest);
 
@@ -47,7 +47,7 @@ class SignUpController implements Controller {
 
       if (!isEmailValid) return badRequest(new InvalidParamError('email'));
 
-      const account = this.addAccount.add({ name, email, password });
+      const account = await this.addAccount.add({ name, email, password });
 
       return { statusCode: 200, body: account };
     } catch (error) {
