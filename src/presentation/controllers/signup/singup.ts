@@ -51,6 +51,7 @@ class SignUpController implements Controller {
 
       return { statusCode: 200, body: account };
     } catch (error) {
+      console.error(error);
       return serverError();
     }
   }
