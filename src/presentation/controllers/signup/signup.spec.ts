@@ -210,7 +210,7 @@ describe('SignUp Controller', () => {
     const { sut, addAccountStub } = makeSut();
 
     jest.spyOn(addAccountStub, 'add').mockImplementationOnce(async () => {
-      return new Promise((resolve, reject) => {
+      return new Promise((_resolve, reject) => {
         reject(new Error());
       });
     });

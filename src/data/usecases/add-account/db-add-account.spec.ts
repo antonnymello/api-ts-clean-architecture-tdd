@@ -76,7 +76,7 @@ describe('DbAddAccount UseCase', () => {
     const { sut, encrypterStub } = makeSut();
 
     jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(
-      new Promise((resolve, reject) => {
+      new Promise((_resolve, reject) => {
         reject(new Error());
       })
     );
@@ -116,7 +116,7 @@ describe('DbAddAccount UseCase', () => {
     const { sut, addAccountRepositoryStub } = makeSut();
 
     jest.spyOn(addAccountRepositoryStub, 'add').mockReturnValueOnce(
-      new Promise((resolve, reject) => {
+      new Promise((_resolve, reject) => {
         reject(new Error());
       })
     );
