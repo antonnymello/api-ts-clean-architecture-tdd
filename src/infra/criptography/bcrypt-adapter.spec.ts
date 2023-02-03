@@ -3,7 +3,6 @@ import BcryptAdapter from './bcrypt-adapter';
 
 interface SutTypes {
   sut: BcryptAdapter;
-  salt: number;
 }
 
 jest.mock('bcrypt', () => ({
@@ -14,16 +13,17 @@ jest.mock('bcrypt', () => ({
   },
 }));
 
+const salt = 12;
+
 const makeSut = (): SutTypes => {
-  const salt = 12;
   const sut = new BcryptAdapter(salt);
 
-  return { salt, sut };
+  return { sut };
 };
 
 describe('Bcrypt Adapter', () => {
   test('Should call Bcrypt with correct data', async () => {
-    const { sut, salt } = makeSut();
+    const { sut } = makeSut();
 
     const hashSpy = jest.spyOn(bcrypt, 'hash');
 
