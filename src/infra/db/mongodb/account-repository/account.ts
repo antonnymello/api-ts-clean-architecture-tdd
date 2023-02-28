@@ -3,6 +3,9 @@ import { AccountModel } from '../../../../domain/models/account';
 import { AddAccountModel } from '../../../../domain/usecases/add-account';
 import { MongoHelper } from '../helpers/mongo-helper';
 
+interface MongoAccountModel extends AccountModel {
+  _id: string;
+}
 export class AccountMongoRepository implements AddAccountRepository {
   async add(accountData: AddAccountModel): Promise<AccountModel> {
     const accountCollection = await MongoHelper.getCollection('accounts');
@@ -11,12 +14,14 @@ export class AccountMongoRepository implements AddAccountRepository {
 
     const { insertedId } = result;
 
-    const account = await accountCollection.findOne({ _id: insertedId });
+    const account = await accountCollection.findOne<MongoAccountModel>({
+      _id: insertedId,
+    });
 
     const { _id, ...accountWithoutMongoId } = account;
 
     return Object.assign({}, accountWithoutMongoId, {
-      id: _id,
-    }) as unknown as AccountModel;
+      id: _id.toString(),
+    });
   }
 }
