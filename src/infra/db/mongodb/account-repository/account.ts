@@ -18,10 +18,6 @@ export class AccountMongoRepository implements AddAccountRepository {
       _id: insertedId,
     });
 
-    const { _id, ...accountWithoutMongoId } = account;
-
-    return Object.assign({}, accountWithoutMongoId, {
-      id: _id.toString(),
-    });
+    return MongoHelper.map(account);
   }
 }
